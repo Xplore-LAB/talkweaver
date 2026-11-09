@@ -9,7 +9,10 @@ def export(root):
     from reportlab.pdfgen import canvas
     from reportlab.lib.units import mm
     from reportlab.lib.utils import ImageReader
-    from reader_primitives import p, styles
+    if __package__:
+        from .reader_primitives import p, styles
+    else:
+        from reader_primitives import p, styles
     os.umask(0o077)
     status=json.loads((root/'status.json').read_text())
     slides=json.loads((root/'slides.reviewed.json').read_text())['pages']

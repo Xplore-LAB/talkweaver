@@ -2,7 +2,6 @@
 import json, os, subprocess, sys, tempfile, unittest
 from pathlib import Path
 
-HERE=Path(__file__).resolve().parent
 
 class AgentFlowTest(unittest.TestCase):
     @classmethod
@@ -15,7 +14,7 @@ class AgentFlowTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):cls.tmp.cleanup()
     def cli(self,*args,ok=True):
-        r=subprocess.run([sys.executable,str(HERE/'talkweaver.py'),*map(str,args)],capture_output=True,text=True)
+        r=subprocess.run([sys.executable,'-m','talkweaver',*map(str,args)],capture_output=True,text=True)
         if ok:self.assertEqual(r.returncode,0,r.stderr+r.stdout)
         else:self.assertNotEqual(r.returncode,0,r.stderr+r.stdout)
         return json.loads(r.stdout)
@@ -63,7 +62,7 @@ class AgentFlowTest(unittest.TestCase):
         (job/'plan.json').write_text(json.dumps({'report_start':0,'report_end':2,'ppt_start':0,'ppt_end':2,'roi':[600,0,100,200]}))
         self.cli('scan','--root',job,ok=False)
     def test_punctuation_preserves_decimal_and_letters(self):
-        from local_report_punctuation import project,parts
+        from talkweaver.local_report_punctuation import project,parts
         original='准确率94.38%使用PID控制'
         result,_=project(original,'准确率是94.38%，使用PID控制。')
         self.assertEqual(parts(result)[0],parts(original)[0]);self.assertIn('94.38%',result)

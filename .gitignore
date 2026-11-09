@@ -1,19 +1,20 @@
-# Explicit source allowlist: private jobs, media, weights and credentials stay ignored.
+# Deny by default; only maintained source/docs/test paths may be committed.
 *
-!/talkweaver.py
-!/local_report_asr.py
-!/local_report_slides.py
-!/local_report_punctuation.py
-!/private_report_export.py
-!/reader_primitives.py
-!/validate_private_report.py
-!/test_talkweaver.py
-!/requirements-agent.txt
-!/SKILL.md
 !/README.md
+!/SKILL.md
 !/LICENSE
 !/pyproject.toml
 !/.gitignore
+!/src/
+!/src/talkweaver/
+!/src/talkweaver/*.py
+!/tests/
+!/tests/test_*.py
+!/docs/
+!/docs/*.md
+!/docs/requirements-local-ai.txt
+!/docs/assets/
+!/docs/assets/*.svg
 !/.github/
 !/.github/workflows/
 !/.github/workflows/ci.yml

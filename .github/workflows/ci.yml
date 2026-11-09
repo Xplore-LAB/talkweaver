@@ -22,4 +22,4 @@ jobs:
       - name: Check entrypoint
         run: talkweaver doctor
       - name: Exercise synthetic workflow
-        run: python -m unittest test_talkweaver.py -v
+        run: python -m unittest discover -s tests -v
