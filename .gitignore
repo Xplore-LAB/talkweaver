@@ -1,0 +1,19 @@
+# Explicit source allowlist: private jobs, media, weights and credentials stay ignored.
+*
+!/talkweaver.py
+!/local_report_asr.py
+!/local_report_slides.py
+!/local_report_punctuation.py
+!/private_report_export.py
+!/reader_primitives.py
+!/validate_private_report.py
+!/test_talkweaver.py
+!/requirements-agent.txt
+!/SKILL.md
+!/README.md
+!/LICENSE
+!/pyproject.toml
+!/.gitignore
+!/.github/
+!/.github/workflows/
+!/.github/workflows/ci.yml
